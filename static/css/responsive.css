@@ -1,0 +1,562 @@
+/*#region   ======================     Header    ==========================  */
+
+@media (max-width: 992px) {
+    .navbar .nav ul {
+        display: none;
+    }
+
+    .navbar .menu {
+        display: flex;
+    }
+
+    .navbar .menu i {
+        display: inline-block;
+    }
+
+    .navbar .highlight {
+        display: none;
+    }
+
+    .dropdown-menu {
+        z-index: 100;
+        display: block;
+        padding: 3rem 2rem;
+    }
+
+    .dropdown-menu ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .dropdown-menu ul li a {
+        color: var(--text-color);
+        font-weight: 500;
+    }
+}
+
+/*#endregion   ===================     Header    ==========================  */
+
+
+
+/*#region   ======================     Reusable Classes    ==========================  */
+
+@media screen and (max-width: 920px) {
+    .section-subtitle {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .section-subtitle {
+        width: 95%;
+        font-size: var(--small-font-size);
+    }
+
+    .section-title {
+        font-size: var(--text-font-size);
+    }
+}
+
+/*#endregion   ===================     Reusable Classes    ==========================  */
+
+
+
+/*#region   ======================     Hero - Home    ==========================  */
+
+@media screen and (max-width: 1035px) {
+    .hero-section p {
+        width: 60%;
+    }
+
+    .hero-section {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .hero-section p {
+        width: 80%;
+        font-size: var(--small-font-size);
+    }
+
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-section #hero-wave-1 {
+        width: 15%;
+        left: 0.5rem;
+        top: 18%;
+    }
+
+    .hero-section #hero-wave-2 {
+        width: 10%;
+        right: 0;
+        top: 0;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+
+    .hero-section #hero-wave-1 {
+        top: 25%;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .hero-section p {
+        width: 95%;
+    }
+
+    .hero-section h1 {
+        line-height: 1.75rem;
+    }
+}
+
+/*#endregion   ===================     Hero - Home    ==========================  */
+
+
+
+
+/*#region   ======================     Customers - Home    ==========================  */
+
+@media screen and (max-width: 1000px) {
+    .customers-section {
+        padding: 3rem 1rem;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .customer-logo {
+        width: 90px;
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .customer-logo {
+        width: 70px;
+    }
+
+    .customers {
+        padding-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .customers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .customer-logo {
+        width: 80%;
+    }
+
+    .customers {
+        gap: 2.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .customer-logo:nth-child(3) {
+        grid-column: span 2;
+        width: 70%;
+    }
+}
+
+/*#endregion   ===================     Customers - Home    ==========================  */
+
+
+
+
+/*#region   ======================     Features - Home    ==========================  */
+
+@media screen and (max-width: 830px) {
+    .features-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-card:first-child {
+        grid-column: span 2;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .features-wrapper {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .feature-card:first-child {
+        grid-column: span 1;
+    }
+
+    .features-section {
+        padding: 2rem 1rem
+    }
+}
+
+/*#endregion   ===================     Features - Home    ==========================  */
+
+
+
+
+/*#region   ======================     Choose Us - Home    ==========================  */
+
+@media screen and (max-width: 900px) {
+    .chooseus-wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .chooseus-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .chooseus-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chooseus-image img {
+        width: 70%;
+    }
+
+    .chooseus-choices {
+        gap: 3rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .chooseus-image img {
+        width: 95%;
+    }
+}
+
+/*#endregion   ===================     Choose Us - Home    ==========================  */
+
+
+
+
+/*#region   ======================     Footer    ==========================  */
+
+@media screen and (max-width: 650px) {
+    .footer-grid {
+        grid-template-columns: 3fr 2fr;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .footer-links-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem 1rem;
+        width: 100%;
+    }
+}
+
+/*#endregion   ===================     Footer    ==========================  */
+
+
+
+
+/*#region   ======================     Login    ==========================  */
+
+@media screen and (max-width: 735px) {
+    .registration-image {
+        display: none;
+    }
+
+    .registration-section {
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+
+    .registration-form-wrapper {
+        padding: 3.5rem 2.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .duo-input-container {
+        gap: 0.75rem;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .registration-form-wrapper {
+        padding: 3.5rem 1.5rem;
+    }
+}
+
+/*#endregion   ===================     Login    ==========================  */
+
+
+
+
+/*#region   ======================     About    ==========================  */
+
+@media screen and (min-width: 992px) {
+    .about-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-left {
+        position: relative;
+    }
+
+    .about-left-content {
+        position: absolute;
+        right: -50px;
+    }
+
+    .about-left {
+        padding: 0;
+        min-height: 100vh;
+    }
+
+    .about-right {
+        min-height: 100vh;
+        padding: 0 5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about-right {
+        padding: 5rem 1rem;
+    }
+
+    .about-img {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .shadow {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/*#endregion   ===================     About    ==========================  */
+
+
+
+
+/*#region   ======================     Create Room    ==========================  */
+
+@media screen and (max-width: 950px) {
+    .create-room-section {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        padding: 3rem 2rem;
+    }
+
+    .create-room-fillers-wrapper {
+        order: 1;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    .create-room-form-wrapper {
+        order: 2;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .datetime-widget {
+        min-height: 25vh;
+    }
+
+    .datetime-widget img {
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .links-widget {
+        flex-direction: column;
+    }
+
+    .create-room-fillers-wrapper {
+        order: 2;
+    }
+
+    .create-room-form-wrapper {
+        order: 1;
+    }
+}
+
+/*#endregion   ===================     Create Room    ==========================  */
+
+
+
+
+/*#region   ======================     Room    ==========================  */
+
+@media screen and (max-width: 1130px) {
+    #video-streams .video-container:not(:first-child):nth-child(n+4) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .room-section {
+        position: relative;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .room-chat-section {
+        position: absolute;
+        max-width: 350px;
+        background-color: white;
+        padding: 1rem;
+        z-index: 10;
+        top: 0;
+        right: -100%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        height: auto;
+        transition: all 500ms ease;
+    }
+
+    .room-chat-section.chat_visible {
+        right: 20px;
+    }
+
+    .chats-widget {
+        height: 70vh;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #video-streams .video-container:not(:first-child):nth-child(n+3) {
+        display: none;
+    }
+
+    #video-streams {
+        height: 60vh;
+    }
+
+    .room-chat-section {
+        min-width: 300px;
+        max-width: 300px;
+    }
+
+    .stream-controllers .primary-btn p{
+        display: none;
+    }
+
+    .stream-controllers .primary-btn i{
+        display: block;
+    }
+
+    .chats-widget {
+        height: 55vh;
+    }
+
+}
+
+@media screen and (max-width: 475px) {
+    #video-streams {
+        height: 50vh;
+    }
+
+    #video-streams .video-container:not(:first-child) {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        z-index: 1;
+        box-shadow: rgba(99, 99, 99, 0.4) 0px 4px 12px 0px;
+    }
+
+    .username-wrapper {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 8;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 0.5rem;
+        color: white;
+        font-size: 0.5rem;
+    }
+}
+
+/*#endregion   ===================     Room    ==========================  */
+
+
+
+
+/*#region   ======================     Pricing    ==========================  */
+
+@media screen and (max-width: 320px) {
+    .pricing-container {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .card__content {
+        padding: 2rem 1.25rem;
+        border-radius: 1rem;
+    }
+}
+
+@media screen and (min-width: 630px) {
+    .card__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card__content {
+        grid-template-rows: repeat(2, max-content);
+    }
+
+    .card__button {
+        align-self: flex-end;
+    }
+}
+
+@media screen and (min-width: 968px) {
+    .pricing-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pricing-card-section {
+        align-items: center;
+    }
+
+    .card__container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card__header-circle {
+        margin-bottom: 1.25rem;
+    }
+
+    .card__header-subtitle {
+        font-size: .813rem;
+    }
+}
+
+/*#endregion   ===================     Pricing    ==========================  */
+
+
+
+
+/*#region   ======================     Head    ==========================  */
+/*#endregion   ===================     Head    ==========================  */

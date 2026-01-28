@@ -1,0 +1,38 @@
+{% extends "../main.html" %}
+
+{% load static %}
+
+{% block website_title %} - Get in Touch{% endblock %}
+
+{% block body_content %}
+
+<section class="reset-section">
+    <div class="form-container">
+        <h1 class="section-title">Contact Us</h1>
+        <p class="section-subtitle">Have a question, comment, or feedback? We'd love to hear from you!</p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="labelled-input-container">
+                <label>Full Name <sup>*</sup></label>
+                <input type="text" name="name" placeholder="Enter your name" autocomplete="off" required>
+            </div>
+
+            <div class="labelled-input-container">
+                <label>Email <sup>*</sup></label>
+                <input type="email" name="email" placeholder="Enter your email address" autocomplete="off" required>
+            </div>
+
+            <div class="labelled-input-container">
+                <label>Message <sup>*</sup></label>
+                <textarea name="message" placeholder="Enter your message" autocomplete="off" required></textarea>
+            </div>
+
+            <button class="btn primary-btn" type="submit">Send</button>
+        </form>
+    </div>
+</section>
+
+{% endblock body_content %}

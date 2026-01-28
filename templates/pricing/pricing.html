@@ -1,0 +1,164 @@
+{% extends "../main.html" %}
+
+{% load static %}
+
+{% block website_title %} - Plans & Pricing{% endblock %}
+
+<link rel="preload" as="image" href="{% static 'images/icons/free-coin.png' %}">
+<link rel="preload" as="image" href="{% static 'images/icons/pro-coin.png' %}">
+<link rel="preload" as="image" href="{% static 'images/icons/enterprise-coin.png' %}">
+
+{% block body_content %}
+
+<section class="pricing-card-section pricing-container pricing-grid">
+    <h1 class="section-title">Choose Your Perfect Plan</h1>
+    <p class="section-subtitle">
+        Find the right plan that fits your needs and unlock the full potential of seamless multilingual communication.
+    </p>
+
+    <div class="card__container pricing-grid">
+
+        <article class="card__content pricing-grid">
+            <div class="card__pricing">
+                <div class="card__pricing-number">
+                    <span class="card__pricing-symbol">$</span>0
+                </div>
+                <span class="card__pricing-month">/month</span>
+            </div>
+
+            <header class="card__header">
+                <div class="card__header-circle pricing-grid">
+                    <img src="{% static 'images/icons/free-coin.png' %}" alt="" class="card__header-img">
+                </div>
+                
+                <span class="card__header-subtitle">Free plan</span>
+                <h1 class="card__header-title">Basic</h1>
+            </header>
+            
+            <ul class="card__list pricing-grid">
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">10 Meetings</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Chatting with Real-Time Translation (1 Language)</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Link Sharing for Meetings</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Basic Meeting Controls</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Standard Audio and Video Quality</p>
+                </li>
+            </ul>
+
+            <button class="card__button">Choose this plan</button>
+        </article>
+
+        <article class="card__content pricing-grid">
+            <div class="card__pricing">
+                <div class="card__pricing-number">
+                    <span class="card__pricing-symbol">$</span>19
+                </div>
+                <span class="card__pricing-month">/month</span>
+            </div>
+
+            <header class="card__header">
+                <div class="card__header-circle pricing-grid">
+                    <img src="{% static 'images/icons/pro-coin.png' %}" alt="" class="card__header-img">
+                </div>
+
+                <span class="card__header-subtitle">Most popular</span>
+                <h1 class="card__header-title">Professional</h1>
+            </header>
+            
+            <ul class="card__list pricing-grid">
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Up to 35 Active Meetings</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Chatting with Real-Time Translation (Up to 5 Languages)</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Customizable Meeting Links</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Advanced Meeting Controls</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">HD Audio and Video Quality</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Priority Support</p>
+                </li>
+            </ul>
+
+            <button class="card__button">Choose this plan</button>
+        </article>
+
+        <article class="card__content pricing-grid">
+            <div class="card__pricing">
+                <div class="card__pricing-number">
+                    <span class="card__pricing-symbol">$</span>29
+                </div>
+                <span class="card__pricing-month">/month</span>
+            </div>
+
+            <header class="card__header">
+                <div class="card__header-circle pricing-grid">
+                    <img src="{% static 'images/icons/enterprise-coin.png' %}" alt="" class="card__header-img">
+                </div>
+
+                <span class="card__header-subtitle">For agencies</span>
+                <h1 class="card__header-title">Enterprise</h1>
+            </header>
+            
+            <ul class="card__list pricing-grid">
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Unlimited Active Meetings</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Chatting Translation (Unlimited Languages)</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Branded Meeting Links</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Comprehensive Controls</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Enhanced HD Quality</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Dedicated Account Manager</p>
+                </li>
+                <li class="card__list-item">
+                    <i class="ri-check-line"></i>
+                    <p class="card__list-description">Advanced Analytics</p>
+                </li>
+            </ul>
+
+            <button class="card__button">Choose this plan</button>
+        </article>
+    </div>
+</section>
+
+{% endblock body_content %}

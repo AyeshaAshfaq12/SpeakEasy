@@ -1,0 +1,145 @@
+{% extends "../main.html" %}
+
+{% load static %}
+
+{% block website_title %}: Seamless Multilingual Conversations for Everyone{% endblock %}
+
+<link rel="preload" as="image" href="{% static 'images/wave_vector.svg' %}">
+<link rel="preload" as="image" href="{% static 'images/hero.png' %}">
+<link rel="preload" as="image" href="{% static 'images/icons/headphone.png' %}">
+<link rel="preload" as="image" href="{% static 'images/icons/chat.png' %}">
+<link rel="preload" as="image" href="{% static 'images/icons/translation.png' %}">
+
+{% block body_content %}
+
+<section class="section hero-section">
+    <img src="{% static 'images/wave_vector.svg' %}" id="hero-wave-1">
+    <img src="{% static 'images/wave_vector.svg' %}" id="hero-wave-2">
+
+    <h1>Connect anywhere, anytime</h1>
+    <p>Speak in your language, understand in theirs. Seamless multilingual conversations made simple and accessible for everyone.</p>
+
+    <a href="{% url 'signup' %}" class="btn primary-btn">Get Started</a>
+
+    <img class="hero-img" src="{% static 'images/hero.png' %}">
+</section>
+
+<section class="customers-section">
+    <h3>Trusted by over <span>50,000</span> dropshippers worldwide</h3>
+
+    <div class="customers">
+        <div class="customer-logo">
+            <img src="{% static 'images/customers/demio.png' %}" alt="">
+        </div>
+        <div class="customer-logo">
+            <img src="{% static 'images/customers/shipbob.svg' %}" alt="">
+        </div>
+        <div class="customer-logo">
+            <img src="{% static 'images/customers/fiverr.png' %}" alt="">
+        </div>
+        <div class="customer-logo">
+            <img src="{% static 'images/customers/profitwell.svg' %}" alt="">
+        </div>
+        <div class="customer-logo">
+            <img src="{% static 'images/customers/paypal.png' %}" alt="">
+        </div>
+    </div>
+</section>
+
+<section class="section features-section">
+    <h2 class="section-title">Check out All Features</h2>
+    <p class="section-subtitle">
+        Discover how seamless multilingual communication can transform your conversations. Dive into our features designed to connect you, anywhere and anytime.
+    </p>
+
+    <div class="features-wrapper">
+        <div class="feature-card">
+            <img src="{% static 'images/icons/headphone.png' %}" alt="">
+            <h4>Audio and HD video calling</h4>
+            <p>
+                Experience crystal-clear communication with our platform's high-definition video and audio calling. Whether it's a casual chat or an important meeting, enjoy uninterrupted, high-quality connections that bring you closer, no matter where you are.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <img src="{% static 'images/icons/translation.png' %}" alt="">
+            <h4>Real-Time Speech Translation</h4>
+            <p>
+                Break language barriers with our real-time speech translation feature. Speak naturally in your language, and instantly see your words translated into your partner's language. Enjoy smooth, multilingual conversations with ease and accuracy.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <img src="{% static 'images/icons/chat.png' %}" alt="">
+            <h4>Smart Messaging</h4>
+            <p>
+                Our smart messaging feature automatically translates your conversations in real-time, allowing you to communicate effortlessly in your preferred language. Stay connected and understand every message with ease, no matter the language barrier.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section chooseus-section">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <p class="section-subtitle">
+        Empowering Global Communication with Innovative Features and Seamless Connectivity.
+    </p>
+
+    <div class="chooseus-wrapper">
+        <div class="chooseus-image">
+            <img src="{% static 'images/hero.png' %}" alt="">
+        </div>
+
+        <div class="chooseus-choices">
+            <div class="choice">
+                <div class="choice-meta">
+                    <div class="choice-icon">
+                        <i class="ri-video-on-fill"></i>
+                    </div>
+                    <h4>Video Meetings</h4>
+                </div>
+                <div class="choice-description">
+                    Connect face-to-face with crystal-clear video, ensuring smooth and reliable meetings, no matter where you are.
+                </div>
+            </div>
+
+            <div class="choice">
+                <div class="choice-meta">
+                    <div class="choice-icon">
+                        <i class="ri-volume-up-fill"></i>
+                    </div>
+                    <h4>Enhanced Audio</h4>
+                </div>
+                <div class="choice-description">
+                    Enjoy clear, uninterrupted conversations with superior audio quality that makes every word count.
+                </div>
+            </div>
+
+            <div class="choice">
+                <div class="choice-meta">
+                    <div class="choice-icon">
+                        <i class="ri-translate"></i>
+                    </div>
+                    <h4>Live Subtitles</h4>
+                </div>
+                <div class="choice-description">
+                    See spoken words instantly translated into text, making conversations easy to follow in your own language.
+                </div>
+            </div>
+
+            <div class="choice">
+                <div class="choice-meta">
+                    <div class="choice-icon">
+                        <i class="ri-message-2-fill"></i>
+                    </div>
+                    <h4>Smart Chatting</h4>
+                </div>
+                <div class="choice-description">
+                    Communicate effortlessly with real-time translation and intelligent messaging features.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body_content %}

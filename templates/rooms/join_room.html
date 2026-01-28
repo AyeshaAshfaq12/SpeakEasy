@@ -1,0 +1,86 @@
+{% extends "../main.html" %}
+
+{% load static %}
+
+{% block website_title %}: Start Your Meeting{% endblock %}
+
+<link rel="preload" as="image" href="{% static 'images/widget-bg.png' %}">
+
+{% block body_content %}
+
+<section class="section create-room-section">
+    <div class="create-room-form-wrapper">
+        <div class="form-container">
+            <h1 class="section-title">Join Meeting</h1>
+            <p class="section-subtitle">Link to existing meeting!</p>
+
+            <form method="POST" class="form" id="join-room-form">
+
+                {% if error %}
+                    <div class="error-container">
+                        {{error}}
+                    </div>
+                {% endif %}
+
+                {% csrf_token %}
+
+                <div class="labelled-input-container">
+                    <label>Meeting ID<sup>*</sup></label>
+                    <input type="text" name="meet_id" placeholder="Enter the meeting id" value="{{room_name}}" {% if not request.user.is_authenticated %}disabled{% endif %}>
+                </div>
+
+                <div class="labelled-input-container">
+                    <label>Joining Name <sup>*</sup></label>
+                    <input type="text" name="join_name" placeholder="Enter your joining name" value="{{join_name}}" autocomplete="off" required>
+                </div>
+
+                <div class="labelled-input-container">
+                    <label>Language <sup>*</sup></label>
+                    <select name="language_speak" id="language_speak">
+                        {% for language_name, code in languages_dict.items %}
+                            <option value="{{ code }}" {% if code == 'en' %}selected{% endif %}>{{ language_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <button class="btn primary-btn" type="submit">Join Meeting</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="create-room-fillers-wrapper">
+        <div class="datetime-widget">
+            <img src="{% static 'images/widget-bg.png' %}" alt="">
+            <div class="datetime-widget-info">
+                <div>
+                    <h1 id="current-time"></h1>
+                    <h4 id="current-date"></h4>
+                </div>
+            </div>
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <div class="links-widget">
+                <a href="{% url 'create_room' %}" class="meeting-link">
+                    <div class="meeting-link-icon">
+                        <i class="ri-add-box-fill"></i>
+                    </div>
+
+                    <h4>Create Meeting</h4>
+                    <p>Start Your meeting</p>
+                </a>
+
+                <a href="" class="meeting-link">
+                    <div class="meeting-link-icon">
+                        <i class="ri-calendar-schedule-fill"></i>
+                    </div>
+
+                    <h4>Schedule</h4>
+                    <p>Plan your meeting</p>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock body_content %}

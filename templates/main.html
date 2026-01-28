@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakEasy{% block website_title %}{% endblock website_title %}</title>
+
+    {% comment %} <!-------------- FAV ICON ---------------> {% endcomment %}
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+
+    {% comment %} <!-------------- CSS STYLING -------------> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    {% comment %} <!-------------- Google Icons -------------> {% endcomment %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    
+    {% comment %} <!-------------- Sweet Alert --------------> {% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css" rel="stylesheet">
+</head>
+
+<body>
+        {% if not request.path == '/login/' %}
+            {% include 'partials/header.html' %}
+        {% endif %}
+
+
+        {% block body_content %}{% endblock body_content %}
+
+        
+        {% include 'partials/footer.html' %}
+        
+
+    {% comment %} <!-------------- SWEET ALERT --------------> {% endcomment %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <!-- Include SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+    
+    {% comment %} <!-------------- JS Linking --------------> {% endcomment %}
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+{% extends "../main.html" %}
+
+{% load static %}
+
+{% block website_title %}: In Session - SpeakEasy Meeting{% endblock %}
+
+{% block body_content %}
+
+<section class="section room-section">
+    <div class="room-video-section">
+        
+        <section id="video-streams">
+            {% comment %} <div class="video-container" id="user-container-1">
+                <div class="username-wrapper"><span class="user-name">Muhammad Abdullah Butt</span></div>
+                <div class="video-player" id="user-1">
+                    <img src="{% static 'images/user.jpg' %}" alt="">
+                </div>
+            </div> {% endcomment %}
+            {% comment %} The Content will be added dynamically using JS {% endcomment %}
+        </section>
+
+        <div class="meeting-captions">
+            <div class="captions-gif">
+                <img src="{% static 'images/audio-gif.gif' %}" alt="">
+            </div>
+            <div class="caption-meta">
+                <h6>Translated Captions</h6>
+                <p id="container-for-transcriptions">
+                    Transcription in progress...
+                </p>
+            </div>
+        </div>
+
+        <div class="stream-controllers">
+            <div title="Copy Link" class="btn controller-icon-wrapper" id="copy-btn">
+                <i class="ri-file-copy-fill"></i>
+                <p hidden>{{room_name}}</p>
+            </div>
+
+            <div title="Show/Hide Chat" class="btn controller-icon-wrapper" id="chat-btn">
+                <i class="ri-message-2-fill"></i>
+            </div>
+
+            <div title="Mute/Unmute Mic" class="btn controller-icon-wrapper" id="mic-btn">
+                <i class="ri-mic-off-fill"></i>
+            </div>
+
+            <div title="Leave Call" class="btn primary-btn" id="leave-btn">
+                <i class="ri-phone-fill"></i>
+                <p>End Meeting</p>
+            </div>
+            
+            <div title="Allow/Forbid Camera" class="btn controller-icon-wrapper" id="camera-btn">
+                <i class="ri-video-off-fill"></i>
+            </div>
+
+            <div title="Show/Hide Captions" class="btn controller-icon-wrapper" id="caption-btn">
+                <i class="ri-closed-captioning-fill"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="room-chat-section">
+        <div class="chat-section-header">
+            <div>
+                <i class="ri-chat-unread-line"></i>
+                <h5>Chat</h5>
+            </div>
+            <i class="ri-close-large-line" id="header-chat-btn"></i>
+        </div>
+
+        <div class="chats-widget">
+        </div>
+
+        <div class="chat-section-footer">
+            <div class="emojicon">
+                <div class="filestorage-icon">
+                    <i class="ri-file-3-line"></i>
+                    <i class="ri-mic-2-line"></i>
+                </div>
+
+                <div class="emoji-icon">
+                    <i class="ri-emoji-sticker-line"></i>
+                </div>
+            </div>
+
+            <form class="chat-section-form" id="message-form" method='POST'>
+                {% csrf_token %}
+                <textarea placeholder="Type to write a message" name="message" id="sent-message" required></textarea>
+                <button type="submit" id="send-msg-btn">
+                    <p>Send</p>
+                    <div class="loader">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                        <div class="bar4"></div>
+                        <div class="bar5"></div>
+                        <div class="bar6"></div>
+                        <div class="bar7"></div>
+                        <div class="bar8"></div>
+                        <div class="bar9"></div>
+                        <div class="bar10"></div>
+                        <div class="bar11"></div>
+                        <div class="bar12"></div>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+{% comment %} <!-------------- Agora RTC --------------> {% endcomment %}
+<script src="{% static 'js/AgoraRTC_N-4.20.0.js' %}"></script>
+
+{% comment %} <!-------------- Streaming Functionality --------------> {% endcomment %}
+<script src="{% static 'js/stream.js' %}"></script>
+
+{% comment %} <!-------------- Socket Chat Functionality --------------> {% endcomment %}
+<script>
+
+    let last_text = '';
+    let last_sender = '';
+
+    let room_name = sessionStorage.getItem('room');
+    let name = sessionStorage.getItem('name');
+    let lang = sessionStorage.getItem('lang');
+
+    // Determine the WebSocket protocol based on the application's URL
+    const websocketProtocol = window.location.protocol === "https:" ? "wss" : "ws";
+    const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/${room_name}/${lang}/`;
+
+    // Create a new WebSocket connection
+    const socket = new WebSocket(wsEndpoint);
+
+    // Successful connection event
+    socket.onopen = (event) => {
+        console.log("WebSocket connection opened!");
+    };
+
+
+    // Socket disconnect event
+    socket.onclose = (event) => {
+        console.log("WebSocket connection closed!");
+    };
+
+
+    // Form submit listener
+    document.getElementById('message-form').addEventListener('submit', function(event){
+        event.preventDefault();
+        const message = document.getElementById('sent-message').value;
+        document.getElementById('sent-message').disabled = true;
+        document.getElementById('send-msg-btn').disabled = true;
+        document.querySelector('#send-msg-btn .loader').style.display = 'block';
+        document.querySelector('#send-msg-btn p').style.display = 'none';
+        socket.send(
+            JSON.stringify({
+                'message': message,
+                'room_name': room_name,
+                'sender': name,
+            })
+        );
+    });
+
+
+    // Response from consumer on the server
+    socket.addEventListener("message", (event) => {
+        const messageData = JSON.parse(event.data);
+        
+        const originalMessage = messageData['original_message'];
+        const translatedMessage = messageData['translated_message'];
+        const sender = messageData['sender'];
+
+        // Empty the message input field after the message has been sent
+        if (sender == name){
+            document.getElementById('sent-message').value = '';
+            document.getElementById('sent-message').disabled = false;
+            document.getElementById('send-msg-btn').disabled = false;
+            document.querySelector('#send-msg-btn .loader').style.display = 'none';
+            document.querySelector('#send-msg-btn p').style.display = 'block';
+        }
+
+        // Append the message to the chatbox
+        var messageDiv = document.querySelector('.chats-widget');
+        if (originalMessage == last_text && sender == last_sender){}
+        else{
+
+            let currentTime = getCurrentTime();
+
+            if (sender != name){
+                messageDiv.innerHTML += `
+                    <div class="chat-wrapper">
+                        <div class="chat-meta">
+                            <p>${sender}</p>
+                            <p>${currentTime}</p>
+                        </div>
+                        <div class="chat-container">
+                            <p class="chat-message">
+                                ${originalMessage}
+                            </p>
+                            <p class="chat-translation">
+                                ${translatedMessage}
+                            </p>
+                        </div>
+                    </div>
+                `
+            }
+            else{
+                messageDiv.innerHTML += `
+                    <div class="chat-wrapper">
+                        <div class="chat-meta">
+                            <p>${sender}</p>
+                            <p>${currentTime}</p>
+                        </div>
+                        <div class="chat-container sender">
+                            <p class="chat-message">
+                                ${originalMessage}
+                            </p>
+                            <p class="chat-translation">
+                                ${translatedMessage}
+                            </p>
+                        </div>
+                    </div>
+                `
+            }
+
+            last_text = originalMessage;
+            last_sender = sender;
+
+        }
+        
+        scrollToBottom();
+    });
+
+
+    function scrollToBottom() {
+        var chatContainer = document.querySelector(".chats-widget");
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+
+    function getCurrentTime() {
+        let now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let ampm = hours >= 12 ? 'PM' : 'AM';
+        
+        // Convert hours to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // The hour '0' should be '12'
+        
+        // Add a leading zero to minutes if needed
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+    
+        let currentTime = hours + ':' + minutes + ' ' + ampm;
+        return currentTime;
+    }
+
+</script>
+
+{% comment %} <!-------------- Live Transcription --------------> {% endcomment %}
+<script>
+    let audioChunks = [];
+    let mediaRecorder;
+
+
+    // Function to retrieve the CSRF token from cookies
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+    async function startRecording() {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = function(event) {
+            audioChunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = function() {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            sendAudioToBackend(audioBlob);
+            audioChunks = [];
+        };
+
+        mediaRecorder.start();
+    }
+    
+
+    function stopRecording() {
+        if(mediaRecorder)
+            mediaRecorder.stop();
+        startRecording();
+    }
+
+
+    function sendAudioToBackend(blob) {
+        const formData = new FormData();
+        formData.append('audio', blob);
+        formData.append('room', sessionStorage.getItem('room'))
+        formData.append('language', sessionStorage.getItem('lang'))
+
+        // Retrieve CSRF token
+        const csrftoken = getCookie('csrftoken');
+    
+       fetch('/upload_audio/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrftoken,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            let text = data.message;
+            console.log("This is the text received", text)
+            let transcriptionContainer = document.getElementById("container-for-transcriptions");
+            if(text){
+                transcriptionContainer.innerText = text;
+            }
+            else{
+                transcriptionContainer.innerText = "Transcription in progress...";
+            }
+        })
+        .catch(error => {
+            console.error('Error sending audio to backend:', error);
+        });
+    }
+
+    startRecording();
+
+    setInterval(stopRecording, 5000);
+</script>
+
+{% endblock body_content %}

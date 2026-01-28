@@ -1,0 +1,56 @@
+{% extends "../main.html" %}
+
+{% load static %}
+
+{% block website_title %} - About Kinza{% endblock %}
+
+<link rel="preload" as="image" href="{% static 'images/user.jpg' %}">
+
+{% block body_content %}
+
+<section class="about-wrapper">
+    <div class="about-left">
+        <div class="about-left-content">
+            <div>
+                <div class="shadow">
+                    <div class="about-img">
+                        <img src="{% static 'images/user.jpg' %}" alt="about image">
+                    </div>
+                </div>
+
+                <h2>Kinza<br>Rehman</h2>
+                <h3>Web Developer</h3>
+            </div>
+
+            <ul class="icons">
+                <a href="https://www.facebook.com/profile.php?id=100066507025302&mibextid=ZbWKwL"><i class="ri-facebook-fill"></i></a>
+                <a href=""><i class="ri-twitter-x-fill"></i></a>
+                <a href="https://www.instagram.com/kanzarehman625?igsh=MXNhdnkzMzJ0bXl5ZA=="><i class="ri-instagram-fill"></i></a>
+                <a href="https://pin.it/7icKLUxDv"><i class="ri-pinterest-fill"></i></a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about-right">
+        <h1>hi<span>!</span></h1>
+        <h2>Here's who I am & what I do</h2>
+        <div class="about-btns">
+            <a href="" class="btn primary-btn">resume</a>
+            <a href="" class="btn secondary-btn">projects</a>
+        </div>
+
+        <div class="about-para">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, aspernatur possimus ullam quaerat,
+                laboriosam ex voluptate aliquid laborum, obcaecati ratione accusamus! Ea nisi modi dolor nam numquam?
+                Temporibus, molestias amet.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus iure tempora alias laudantium
+                sapiente impedit!
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock body_content %}
